@@ -6,13 +6,15 @@ from dotenv import load_dotenv
 from core.credentials import get_credentials
 from core.bob_report import BOBReport
 from portals.united_concordia import UnitedConcordiaPortal
+from portals.mock_portal import MockPortal
 
 load_dotenv()
 app = FastAPI(title="Dental Eligibility Automation")
 
 PORTAL_MAP = {
     "united_concordia": (UnitedConcordiaPortal, os.getenv("AWS_SECRET_NAME_UC", "dental/united-concordia/credentials")),
-    # "delta_dental": (DeltaDentalPortal, "dental/delta-dental/credentials"),  # add when ready
+    "mock":             (MockPortal,             "mock/credentials"),
+    # "delta_dental": (DeltaDentalPortal, "dental/delta-dental/credentials"),
 }
 
 
